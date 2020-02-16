@@ -45,7 +45,7 @@ class MoviesController < ApplicationController
   end
   
   def sort_column
-    Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    Movie.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
 
   def sort_direction
