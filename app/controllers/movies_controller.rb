@@ -29,7 +29,16 @@ class MoviesController < ApplicationController
   if params[:ratings]
       @ratings=params[:ratings]
       @movies=@movies.where(rating: @ratings.keys)
+  else
+      if session[:ratings]
+        @ratings=session[:ratings]
+        @movies=@movies.where(rating: @ratings.keys)
+      else
+        @ratings=Hash[@all_ratings.collect {|rating| [rating, rating]}] #setting rating to all ratings as initially all boxes should be checked
+        @movies=@movies
+      end
   end
+  
     
   end
 
