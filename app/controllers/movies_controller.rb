@@ -37,7 +37,7 @@ class MoviesController < ApplicationController
     @ratings=Hash[@all_ratings.collect {|rating| [rating, rating]}] #setting rating to all ratings as initially all boxes should be checked
     @movies=@movies
   end
-  end
+#  end
   
     
   end
