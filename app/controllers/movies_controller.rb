@@ -26,6 +26,10 @@ class MoviesController < ApplicationController
       redirectFlag=1
     end
     
+    if params[:order]!= session[:order]
+      session[:order]=@orderList
+    end
+    
     if @sortList == "title"
       @highlight_title = 'hilite'
       @movies = Movie.order(@sortList)
@@ -49,6 +53,10 @@ class MoviesController < ApplicationController
           @ratings=Hash[@all_ratings.collect {|rating| [rating, rating]}] #setting rating to all ratings as initially all boxes should be checked
           @movies=@movies
         end
+    end
+    
+    if @ratings != session[:ratings]
+      session[:ratings]=@ratings
     end
     
     if redirectFlag==1
