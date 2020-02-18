@@ -15,7 +15,6 @@ class MoviesController < ApplicationController
     redirectFlag = 0
     
     
-    
     if params[:sort]
       @sortList = params[:sort]
     else
@@ -27,7 +26,7 @@ class MoviesController < ApplicationController
     end
     
     if params[:sort]!= session[:sort]
-      session[:sort]=@sort
+      session[:sort]=@sortList
     end
     
     if @sortList == "title"
