@@ -25,6 +25,11 @@ class MoviesController < ApplicationController
     if @sortList == "release_date"
       @highlight_release_date = 'hilite'
     end
+  
+  if params[:ratings]
+      @ratings=params[:ratings]
+      @movies=@movies.where(rating: @ratings.keys)
+  end
     
   end
 
