@@ -19,7 +19,7 @@ class MoviesController < ApplicationController
       @highlight_title = 'hilite'
     end
     
-    iif @sortList == "release_date"
+    if @sortList == "release_date"
       @highlight_release_date = 'hilite'
     end
   end
