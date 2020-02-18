@@ -24,6 +24,7 @@ class MoviesController < ApplicationController
     if @sortList == "release_date"
       @highlight_release_date = 'hilite'
     end
+    
   end
 
   def new
