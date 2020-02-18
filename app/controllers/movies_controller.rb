@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
       redirectFlag=1
     end
     
-    if params[:sort]!= session[:sort]
+    if session[:sort] != params[:sort]
       session[:sort]=@sortList
     end
     
@@ -49,7 +49,7 @@ class MoviesController < ApplicationController
           @ratings=session[:ratings]
           @movies=@movies.where(rating: @ratings.keys)
         else
-          @ratings=Hash[@all_ratings.collect {|rating| [rating, rating]}] #setting rating to all ratings as initially all boxes should be checked
+          @ratings=Hash[@all_ratings.collect {|rating| [rating, rating]}] 
           @movies=@movies
         end
     end
