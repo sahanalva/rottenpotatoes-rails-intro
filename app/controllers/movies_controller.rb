@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
     @all_ratings=Movie.all_ratings
     redirectFlag = 0
     
-    @movies = Movie.order(params[:sort])
+    
     
     if params[:sort]
       @sortList = params[:sort]
@@ -33,24 +33,26 @@ class MoviesController < ApplicationController
     if @sortList == "release_date"
       @highlight_release_date = 'hilite'
     end
+    
+    @movies = Movie.order(@sortList)
   
-  if params[:ratings]
-      @ratings=params[:ratings]
-      @movies=@movies.where(rating: @ratings.keys)
-  else
-      if session[:ratings]
-        @ratings=session[:ratings]
+    if params[:ratings]
+        @ratings=params[:ratings]
         @movies=@movies.where(rating: @ratings.keys)
-      else
-        @ratings=Hash[@all_ratings.collect {|rating| [rating, rating]}] #setting rating to all ratings as initially all boxes should be checked
-        @movies=@movies
-      end
-  end
-  
-  if redirectFlag==1
-      flash.keep
-      redirect_to movies_path(order: session[:order],ratings: session[:ratings])
-  end
+    else
+        if session[:ratings]
+          @ratings=session[:ratings]
+          @movies=@movies.where(rating: @ratings.keys)
+        else
+          @ratings=Hash[@all_ratings.collect {|rating| [rating, rating]}] #setting rating to all ratings as initially all boxes should be checked
+          @movies=@movies
+        end
+    end
+    
+    if redirectFlag==1
+        flash.keep
+        redirect_to movies_path(order: session[:order],ratings: session[:ratings])
+    end
     
   end
 
