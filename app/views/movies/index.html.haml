@@ -4,7 +4,7 @@
 %table#movies.table.table-striped.col-md-12
   %thead
     %tr
-      %th= link_to 'Movie Title', :sort=> "title"
+      %th{:class=>@highlight, :id=>"title_header"}= link_to 'Movie Title', :sort=> "title"
       %th= link_to "Rating"
       %th= link_to "Release Date", :sort=> "release_date"
       %th= link_to "More Info"
