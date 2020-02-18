@@ -28,13 +28,15 @@ class MoviesController < ApplicationController
     
     if @sortList == "title"
       @highlight_title = 'hilite'
-    end
-    
-    if @sortList == "release_date"
+      @movies = Movie.order(@sortList)
+    elsif @sortList == "release_date"
       @highlight_release_date = 'hilite'
+      @movies = Movie.order(@sortList)
+    else
+      @movies = Movie.all
     end
     
-    @movies = Movie.order(@sortList)
+   
   
     if params[:ratings]
         @ratings=params[:ratings]
